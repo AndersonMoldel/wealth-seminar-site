@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026 火馬奔騰年財運幸色講座 | 掌握流年節奏</title>
+    
+    <!-- Google Fonts: Noto Serif TC (標題) & Noto Sans TC (內文) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&family=Noto+Serif+TC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind 設定與自訂樣式 -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'orient-green': '#064e3b', // 深墨綠
+                        'orient-gold': '#fbbf24',  // 金色
+                        'orient-red': '#b91c1c',   // 硃砂紅
+                        'orient-bg': '#fafaf9',    // 淺米白
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, rgba(6,78,59,0.95) 0%, rgba(6,78,59,0.85) 50%, rgba(185,28,28,0.8) 100%)',
+                        'card-gradient': 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.95) 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 易經紋理與光暈裝飾 */
+        .bg-pattern {
+            background-image: radial-gradient(rgba(251, 191, 36, 0.15) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+        .gold-glow {
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.2);
+        }
+        /* 隱藏預設捲軸，保持畫面乾淨 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fafaf9; }
+        ::-webkit-scrollbar-thumb { background: #064e3b; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-orient-bg font-sans text-gray-800 antialiased bg-pattern">
+
+    <!-- Hero 首屏區 -->
+    <header class="relative w-full min-h-[85vh] flex items-center justify-center overflow-hidden">
+        <!-- 背景圖片與漸層疊層 -->
+        <div class="absolute inset-0 bg-[url('./images/hero.jpg')] bg-cover bg-center"></div>
+        <div class="absolute inset-0 bg-hero-gradient"></div>
+        
+        <!-- 裝飾光暈 -->
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-orient-gold/20 rounded-full blur-3xl mix-blend-screen"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orient-red/20 rounded-full blur-3xl mix-blend-screen"></div>
+
+        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-16">
+            <span class="inline-block py-1 px-3 border border-orient-gold/50 rounded-full text-orient-gold text-sm tracking-widest mb-6 font-medium">
+                年度高端趨勢講座
+            </span>
+            <h1 class="font-serif text-4xl md:text-6xl lg:text-7xl text-white font-bold tracking-wider mb-6 leading-tight">
+                2026 火馬奔騰年<br><span class="text-orient-gold">財運幸色講座</span>
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 font-light tracking-wide mb-8">
+                以易經智慧掌握流年節奏，借幸色開啟財運與行動能量。
+            </p>
+            <p class="text-md text-orient-gold/90 mb-12 font-serif italic">
+                「由易經大師親自分享，帶你掌握 2026 火馬奔騰年的財運節奏與幸色能量」
+            </p>
+            <a href="#register" class="inline-block bg-orient-gold text-orient-green font-bold text-lg py-4 px-10 rounded-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(251,191,36,0.3)]">
+                立即報名
+            </a>
+        </div>
+    </header>
+
+    <!-- 易經 × 幸色小彩蛋區 (動態生成) -->
+    <section class="relative -mt-16 z-20 px-4">
+        <div class="max-w-3xl mx-auto glass-card rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 gold-glow">
+            <div class="w-16 h-16 rounded-full flex items-center justify-center border-2 border-orient-gold shrink-0" id="lucky-color-circle">
+                <span class="font-serif text-2xl text-orient-green">吉</span>
+            </div>
+            <div class="flex-1">
+                <h3 class="font-serif text-xl font-bold text-orient-green mb-2">今日財運提示與幸色</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm text-gray-700" id="lucky-content">
+                    <!-- JS 動態填入 -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 講師介紹區 -->
+    <section class="py-20 px-4 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="font-serif text-3xl md:text-4xl text-orient-green font-bold mb-4">講師介紹</h2>
+            <div class="w-12 h-1 bg-orient-gold mx-auto"></div>
+        </div>
+        <div class="flex flex-col md:flex-row items-center gap-10 bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-gray-100">
+            <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-orient-bg shadow-lg shrink-0">
+                <!-- 替換為真實講師照片 -->
+                <img src="" alt="" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500">
+            </div>
+            <div>
+                <h3 class="font-serif text-2xl font-bold text-gray-900 mb-2">易經大師 <span class="text-orient-gold text-lg ml-2">Albert</span></h3>
+                <p class="text-gray-600 leading-relaxed mb-4">
+                    深耕易經哲學與環境能量學二十餘年，擅長以易經思維解析流年趨勢、財運節奏與色彩能量應用。
+                </p>
+                <p class="text-gray-600 leading-relaxed">
+                    強調「不迷信、重實踐」，以東方智慧結合現代生活觀察，為企業家與高階主管提供精準的趨勢啟發與年度行動方向。2026 火馬年，將帶領學員順勢而行，引導財氣流動。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 講座亮點區 -->
+    <section class="py-20 px-4 bg-orient-green text-white relative overflow-hidden">
+        <!-- 裝飾線條 -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, #fbbf24 0, #fbbf24 1px, transparent 0, transparent 50%); background-size: 60px 60px;"></div>
+        
+        <div class="max-w-6xl mx-auto relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="font-serif text-3xl md:text-4xl text-orient-gold font-bold mb-4">講座核心亮點</h2>
+                <div class="w-12 h-1 bg-white/30 mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
+                    <div class="text-orient-gold text-3xl mb-4">🔥</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">火馬奔騰趨勢</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">深入理解 2026 年整體氣勢與變動節奏，在動盪中尋找上升軌跡。</p>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
+                    <div class="text-orient-gold text-3xl mb-4">💰</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">財運能量佈局</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">從年度流動中掌握財氣開展方向，引導人際與機會的匯聚。</p>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
+                    <div class="text-orient-gold text-3xl mb-4">🎨</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">幸色精準應用</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">將有利色彩融入日常穿搭、辦公空間與重要洽談場合，提升氣場。</p>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white/10 backdrop-blur-sm p-8 rounded-xl border border-white/20 hover:bg-white/20 transition-all duration-300 hover:-translate-y-2">
+                    <div class="text-orient-gold text-3xl mb-4">🧭</div>
+                    <h3 class="font-serif text-xl font-bold mb-3">年度行動策略</h3>
+                    <p class="text-gray-300 text-sm leading-relaxed">以易經思維理解進退時機、節奏與選擇，做到順勢而為。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 流程說明區 -->
+    <section class="py-20 px-4 max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+            <h2 class="font-serif text-3xl md:text-4xl text-orient-green font-bold mb-4">參與流程</h2>
+            <div class="w-12 h-1 bg-orient-gold mx-auto"></div>
+        </div>
+        <div class="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 relative">
+            <!-- 連接線 (桌機版) -->
+            <div class="hidden md:block absolute top-6 left-[10%] right-[10%] h-0.5 bg-orient-gold/30 z-0"></div>
+            
+            <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/4">
+                <div class="w-12 h-12 rounded-full bg-orient-green text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">1</div>
+                <h4 class="font-bold text-gray-900 mb-2">填寫資料</h4>
+                <p class="text-sm text-gray-500">完成下方線上報名表單</p>
+            </div>
+            <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/4">
+                <div class="w-12 h-12 rounded-full bg-orient-green text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">2</div>
+                <h4 class="font-bold text-gray-900 mb-2">收取確認信</h4>
+                <p class="text-sm text-gray-500">系統將自動發送報名成功通知</p>
+            </div>
+            <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/4">
+                <div class="w-12 h-12 rounded-full bg-orient-green text-white flex items-center justify-center font-bold text-xl mb-4 shadow-md">3</div>
+                <h4 class="font-bold text-gray-900 mb-2">準時出席</h4>
+                <p class="text-sm text-gray-500">依選擇場次前往指定地點</p>
+            </div>
+            <div class="relative z-10 flex flex-col items-center text-center w-full md:w-1/4">
+                <div class="w-12 h-12 rounded-full bg-orient-gold text-orient-green flex items-center justify-center font-bold text-xl mb-4 shadow-md">4</div>
+                <h4 class="font-bold text-gray-900 mb-2">開啟財運</h4>
+                <p class="text-sm text-gray-500">聆聽解析，掌握 2026 能量</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 報名表單區 -->
+    <section id="register" class="py-20 px-4 bg-gray-50 border-t border-gray-200">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h2 class="font-serif text-3xl md:text-4xl text-orient-green font-bold mb-4">講座報名</h2>
+                <p class="text-gray-600">填寫資料後，我們將寄送報名確認通知至您的信箱。<br>送出前請確認聯絡方式正確。</p>
+            </div>
+
+            <!-- 提示訊息區塊 -->
+            <div id="alert-box" class="hidden mb-6 p-4 rounded-md border text-sm font-medium transition-all duration-300"></div>
+
+            <form id="regForm" class="glass-card p-8 md:p-10 rounded-2xl shadow-sm relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- 姓名 -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">姓名 <span class="text-orient-red">*</span></label>
+                        <input type="text" name="name" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-orient-gold focus:ring-2 focus:ring-orient-gold/20 outline-none transition-all bg-white/80">
+                    </div>
+                    <!-- 性別 -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">性別 <span class="text-orient-red">*</span></label>
+                        <select name="gender" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-orient-gold focus:ring-2 focus:ring-orient-gold/20 outline-none transition-all bg-white/80 appearance-none">
+                            <option value="" disabled selected>請選擇</option>
+                            <option value="男">男</option>
+                            <option value="女">女</option>
+                            <option value="其他">其他</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- 聯絡電話 -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">聯絡電話 <span class="text-orient-red">*</span></label>
+                        <input type="tel" name="phone" required placeholder="0912345678" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-orient-gold focus:ring-2 focus:ring-orient-gold/20 outline-none transition-all bg-white/80">
+                    </div>
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Email <span class="text-orient-red">*</span></label>
+                        <input type="email" name="email" required placeholder="your@email.com" class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-orient-gold focus:ring-2 focus:ring-orient-gold/20 outline-none transition-all bg-white/80">
+                    </div>
+                </div>
+
+                <!-- 出生年月日與時辰 -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <!-- 出生年月日 -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">出生年月日 <span class="text-orient-red">*</span></label>
+                        <p class="text-xs text-gray-500 mb-2">※ 作為講座互動與個人幸色分享參考使用</p>
+                        <input type="date" name="birthdate" value="1990-07-16" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-orient-gold focus:ring-2 focus:ring-orient-gold/20 outline-none transition-all bg-white/80">
+                    </div>
+                    <!-- 出生時辰 -->
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1">出生時辰 <span class="text-orient-red">*</span></label>
+                        <p class="text-xs text-gray-500 mb-2">※ 若不確定可選「不確定」</p>
+                        <select name="birthtime" required class="w-full px-4 py-3 rounded-md border border-gray-300 focus:border-orient-gold focus:ring-2 focus:ring-orient-gold/20 outline-none transition-all bg-white/80 appearance-none">
+                            <option value="" disabled selected>請選擇時辰</option>
+                            <option value="子時 (23:00 - 00:59)">子時 (23:00 - 00:59)</option>
+                            <option value="丑時 (01:00 - 02:59)">丑時 (01:00 - 02:59)</option>
+                            <option value="寅時 (03:00 - 04:59)">寅時 (03:00 - 04:59)</option>
+                            <option value="卯時 (05:00 - 06:59)">卯時 (05:00 - 06:59)</option>
+                            <option value="辰時 (07:00 - 08:59)">辰時 (07:00 - 08:59)</option>
+                            <option value="巳時 (09:00 - 10:59)">巳時 (09:00 - 10:59)</option>
+                            <option value="午時 (11:00 - 12:59)">午時 (11:00 - 12:59)</option>
+                            <option value="未時 (13:00 - 14:59)">未時 (13:00 - 14:59)</option>
+                            <option value="申時 (15:00 - 16:59)">申時 (15:00 - 16:59)</option>
+                            <option value="酉時 (17:00 - 18:59)">酉時 (17:00 - 18:59)</option>
+                            <option value="戌時 (19:00 - 20:59)">戌時 (19:00 - 20:59)</option>
+                            <option value="亥時 (21:00 - 22:59)">亥時 (21:00 - 22:59)</option>
+                            <option value="不確定">不確定</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 場次選擇 -->
+                <div class="mb-10">
+                    <label class="block text-sm font-bold text-gray-700 mb-3">場次選擇 <span class="text-orient-red">*</span></label>
+                    <div class="space-y-3">
+                        <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-orient-gold/5 transition-colors bg-white/80">
+                            <input type="radio" name="session" value="4/13-15 台北場" required class="w-5 h-5 text-orient-green focus:ring-orient-gold border-gray-300">
+                            <span class="ml-3 font-medium text-gray-800">4/13-15 台北場</span>
+                        </label>
+                        <label class="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-orient-gold/5 transition-colors bg-white/80">
+                            <input type="radio" name="session" value="4/17-19 香港場" required class="w-5 h-5 text-orient-green focus:ring-orient-gold border-gray-300">
+                            <span class="ml-3 font-medium text-gray-800">4/17-19 香港場</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- 隱藏欄位：傳遞當下幸色提示給後端 -->
+                <input type="hidden" name="luckyHint" id="hidden-lucky-hint" value="">
+
+                <button type="submit" id="submitBtn" class="w-full bg-orient-green text-white font-bold text-lg py-4 rounded-md transition-all duration-300 hover:bg-orient-green/90 hover:shadow-lg flex justify-center items-center">
+                    <span>確認送出報名</span>
+                    <!-- Loading Spinner (預設隱藏) -->
+                    <svg id="spinner" class="animate-spin ml-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- 頁尾 -->
+    <footer class="bg-orient-green text-white/60 py-8 text-center text-sm border-t border-white/10">
+        <p class="font-serif mb-2 text-orient-gold/80">2026 火馬奔騰年財運幸色講座</p>
+        <p>&copy; 2026 Wealth Seminar. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript 邏輯 -->
+    <script>
+        // ==========================================
+        // 1. 動態幸色 / 財運提示系統 (小彩蛋)
+        // ==========================================
+        function generateLuckyHint() {
+            const now = new Date();
+            const day = now.getDay(); // 0(Sun) - 6(Sat)
+            const hour = now.getHours();
+
+            // 簡易五行/八卦對應規則 (僅為展示質感，非真實嚴謹命理)
+            const rules = [
+                { color: '硃砂紅', hex: '#b91c1c', direction: '正南', action: '曝光、展現自我、積極洽談' }, // 日 (火)
+                { color: '米白色', hex: '#f5f5f4', direction: '西北', action: '收斂、規劃、整理思緒' }, // 一 (金/水)
+                { color: '琥珀橙', hex: '#d97706', direction: '東南', action: '推進、建立人際連結' }, // 二 (火/木)
+                { color: '深墨綠', hex: '#064e3b', direction: '正東', action: '學習、穩健佈局、創意發想' }, // 三 (木)
+                { color: '暖金色', hex: '#fbbf24', direction: '正西', action: '整合資源、財務檢視、收穫' }, // 四 (金)
+                { color: '深酒紅', hex: '#831843', direction: '西南', action: '沉澱、建立信任、深度對話' }, // 五 (土/火)
+                { color: '大地棕', hex: '#78350f', direction: '東北', action: '休養生息、蓄積能量' }  // 六 (土)
+            ];
+
+            const todayRule = rules[day];
+            
+            // 依時段微調提醒
+            let timeHint = "";
+            if (hour >= 5 && hour < 11) timeHint = "晨間朝氣旺盛，適合主動出擊。";
+            else if (hour >= 11 && hour < 15) timeHint = "午間陽氣極盛，宜把握關鍵決策。";
+            else if (hour >= 15 && hour < 19) timeHint = "傍晚氣場轉換，適合盤點今日成果。";
+            else timeHint = "夜間能量沉潛，宜放鬆身心迎接明日。";
+
+            // 更新 DOM
+            document.getElementById('lucky-color-circle').style.backgroundColor = todayRule.hex;
+            document.getElementById('lucky-color-circle').style.borderColor = todayRule.hex;
+            document.getElementById('lucky-color-circle').innerHTML = `<span class="font-serif text-2xl text-white">吉</span>`;
+
+            const contentHtml = `
+                <div><span class="font-bold text-gray-900">今日幸色：</span>${todayRule.color}</div>
+                <div><span class="font-bold text-gray-900">有利方位：</span>${todayRule.direction}</div>
+                <div class="md:col-span-2"><span class="font-bold text-gray-900">財運提示：</span>今日適合${todayRule.action}。</div>
+                <div class="md:col-span-2 text-orient-green mt-1 italic">「${timeHint}」</div>
+            `;
+            document.getElementById('lucky-content').innerHTML = contentHtml;
+
+            // 將結果存入隱藏欄位，一併送給後端
+            const hintString = `幸色:${todayRule.color} | 方位:${todayRule.direction} | 提示:${todayRule.action}`;
+            document.getElementById('hidden-lucky-hint').value = hintString;
+        }
+
+        // 網頁載入時執行
+        window.addEventListener('DOMContentLoaded', generateLuckyHint);
+
+        // ==========================================
+        // 2. 表單驗證與 Fetch 串接 GAS
+        // ==========================================
+        
+        // 【重要】請將此 URL 替換為您部署 GAS 後取得的 Web App URL
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzRxM6VnQE-X4PdR_LccsLeB4ZPZYFP9XV2yv05XklM_Yczj7YSkP4cWPlWlIhBtNPy/exec"; 
+
+        const form = document.getElementById('regForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const spinner = document.getElementById('spinner');
+        const alertBox = document.getElementById('alert-box');
+
+        function showAlert(message, type) {
+            alertBox.className = `mb-6 p-4 rounded-md border text-sm font-medium transition-all duration-300 block`;
+            if (type === 'success') {
+                alertBox.classList.add('bg-green-50', 'border-green-200', 'text-green-800');
+                alertBox.innerHTML = `✅ ${message}`;
+            } else {
+                alertBox.classList.add('bg-red-50', 'border-red-200', 'text-red-800');
+                alertBox.innerHTML = `⚠️ ${message}`;
+            }
+            // 平滑捲動到提示框
+            alertBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function hideAlert() {
+            alertBox.className = 'hidden';
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideAlert();
+
+            // 檢查是否已填寫 GAS URL
+            if (GAS_WEB_APP_URL === "請替換成你的_GAS_Web_App_URL" || GAS_WEB_APP_URL === "") {
+                showAlert("系統錯誤：尚未設定後端 API 網址，請聯絡管理員。", "error");
+                return;
+            }
+
+            // 取得表單資料
+            const formData = new FormData(form);
+            const dataObj = Object.fromEntries(formData.entries());
+
+            // 簡單前端驗證 (Email 格式 HTML5 已把關，這裡可加強電話驗證)
+            if (!dataObj.phone.trim()) {
+                showAlert("請填寫聯絡電話", "error");
+                return;
+            }
+
+            // UI 進入 Loading 狀態
+            submitBtn.disabled = true;
+            submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
+            submitBtn.querySelector('span').innerText = '資料送出中...';
+            spinner.classList.remove('hidden');
+
+            try {
+                // 【CORS 實務關鍵】
+                // 為了避免 GAS 遇到 CORS Preflight (OPTIONS) 阻擋，
+                // 實務上將 Content-Type 設為 text/plain，GAS 後端依然可以透過 JSON.parse 解析。
+                const response = await fetch(GAS_WEB_APP_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'text/plain;charset=utf-8',
+                    },
+                    body: JSON.stringify(dataObj)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    showAlert(result.message || "報名成功，確認信已寄出！", "success");
+                    form.reset(); // 成功後清空表單
+                } else {
+                    showAlert(result.message || "報名失敗，請稍後再試。", "error");
+                }
+            } catch (error) {
+                console.error('Fetch Error:', error);
+                showAlert("網路連線異常或伺服器無回應，請稍後再試。", "error");
+            } finally {
+                // 恢復按鈕狀態
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
+                submitBtn.querySelector('span').innerText = '確認送出報名';
+                spinner.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
